@@ -1,0 +1,57 @@
+<mat-toolbar>
+  Trabalho Node
+  <span fxFlex></span>
+  <ng-container *ngIf="!(authenticated$ | async)">
+    <button mat-button routerLink="/auth/login">
+      <mat-icon>input</mat-icon>
+      &nbsp;Login
+  </button>
+  <button mat-button routerLink="/auth/novousuario">
+      <mat-icon>person_add</mat-icon>
+      &nbsp;Registrar
+  </button>
+  </ng-container>
+  <ng-container *ngIf="(authenticated$ | async) && (user$ | async)">
+      <button mat-button [matMenuTriggerFor]="menuCliente" >
+        <mat-icon>people</mat-icon>
+        &nbsp;Clientes
+    </button>
+    <mat-menu #menuCliente="matMenu">
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/main/cliente">
+        <mat-icon>description</mat-icon>
+        <span>Listar Clientes</span>
+      </button>
+      <button mat-menu-item routerLink="/main/cliente/novo-cliente">
+        <mat-icon>add_circle_outline</mat-icon>
+        <span>Novo Cliente</span>
+      </button>
+    </mat-menu>
+    <button mat-button routerLink="/main/cliente/servico">
+        <mat-icon>business_center</mat-icon>
+        &nbsp;Serviços
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <p class="username">{{ (user$ | async)?.nome }}</p>
+      <mat-divider></mat-divider>
+      <button mat-menu-item routerLink="/main/usuario">
+        <mat-icon>edit</mat-icon>
+        <span>Dados Pessoais</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="excluirUsuario()">
+        <mat-icon>delete</mat-icon>
+        <span>Excluir Usuário</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click) = "logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
+<router-outlet></router-outlet>

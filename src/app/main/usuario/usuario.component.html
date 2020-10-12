@@ -1,0 +1,41 @@
+<div  fxLayout="row" fxLayoutAlign="space-around center" >
+    <div align="center" fxLayout="row" fxLayoutAlign="center center"  class="register-form">
+  
+      <form role="form" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+  
+        <mat-card class="mat-elevation-z8" flex="100">
+  
+          <mat-card-title>Dados da Conta</mat-card-title>
+  
+          <mat-card-content fxLayout="column" fxLayoutAlign="space-around stretch">
+
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="_id" 
+                  autocomplete="id" placeholder="ID" readonly value="{{ (usuario|async)?._id }}">
+              </mat-form-field>                            
+            </div>
+                        
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="nome" 
+                  autocomplete="nome" placeholder="Nome" value="{{ (usuario|async)?.nome }}">
+              </mat-form-field>                            
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="email" 
+                  autocomplete="nome" placeholder="E-mail" value="{{ (usuario|async)?.email }}">
+              </mat-form-field>                            
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="end end" >
+              <button mat-button color="primary" type="submit" [disabled]="!formRegister.valid">
+                <mat-icon>done</mat-icon>&nbsp;Salvar
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+</div>

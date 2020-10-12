@@ -1,0 +1,60 @@
+<div  fxLayout="row" fxLayoutAlign="space-around center" >
+    <div align="center" fxLayout="row" fxLayoutAlign="center center"  class="register-form">
+  
+      <form role="form" [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+  
+        <mat-card class="mat-elevation-z8" flex="100">
+  
+          <mat-card-title>Dados do Cliente</mat-card-title>
+  
+          <mat-card-content fxLayout="column" fxLayoutAlign="space-around stretch">
+
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="_id" 
+                  autocomplete="id" placeholder="ID" readonly value="{{ (cliente|async)?._id }}">
+              </mat-form-field>                            
+            </div>
+                        
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="nome" 
+                  autocomplete="nome" placeholder="Nome" value="{{ (cliente|async)?.nome }}">
+              </mat-form-field>                            
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="email" 
+                  class="form-control" value="" autocomplete="email" placeholder="E-mail" value="{{ (cliente|async)?.email }}" >
+              </mat-form-field>  
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="50">
+                <input matInput type="text" formControlName="cpf" 
+                  class="form-control" value="" autocomplete="cpf" placeholder="CPF" value="{{ (cliente|async)?.cpf }}" >
+              </mat-form-field>  
+              <mat-form-field fxFlex="50">
+                <input matInput type="text" formControlName="tel" 
+                  class="form-control" value="" autocomplete="tel" placeholder="Telefone" value="{{ (cliente|async)?.tel }}" >
+              </mat-form-field>  
+          </div>
+            
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <mat-form-field fxFlex="100">
+                <input matInput type="text" formControlName="endereco" 
+                  class="form-control" value="" autocomplete="endereco" placeholder="Endereço" value="{{ (cliente|async)?.endereco }}" >
+              </mat-form-field>  
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="end end" >
+              <button mat-button color="primary" type="submit" [disabled]="!formRegister.valid">
+                <mat-icon>done</mat-icon>&nbsp;Salvar
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+</div>
